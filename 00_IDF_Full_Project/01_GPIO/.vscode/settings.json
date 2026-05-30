@@ -1,0 +1,13 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.extensionActivationMode": "always",
+  "clangd.path": "/home/ibrahimshnouda/.espressif/tools/esp-clang/esp-20.1.1_20250829/esp-clang/bin/clangd",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=/home/ibrahimshnouda/DATA/IoT/EPP32/ESP-IDF-Projects/GPIO/build"
+  ],
+  "idf.currentSetup": "/home/ibrahimshnouda/.espressif/v6.0.1/esp-idf",
+  "idf.flashType": "UART",
+  "idf.port": "/dev/ttyUSB0"
+}
