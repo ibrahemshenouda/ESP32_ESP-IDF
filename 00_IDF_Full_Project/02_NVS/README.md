@@ -1,15 +1,40 @@
-# NVS Full Project (Wi-Fi Credentials)
+# 💾 Full Project: NVS Wi-Fi Credentials
 
-This is a fully structured, buildable ESP-IDF project demonstrating the use of the Non-Volatile Storage (NVS) driver. It shows how to safely store key-value pairs (like Wi-Fi SSIDs and passwords) into the ESP32's flash memory and retrieve them upon reboot.
+This directory is a **complete, buildable ESP-IDF project**. It contains everything required by the CMake build system to compile and flash an NVS (Non-Volatile Storage) demonstration to an ESP32.
 
-## Project Structure
-*   **`main/`**: Contains the main application code interfacing with the `nvs_flash` API.
-*   **`CMakeLists.txt`**: The CMake build configuration for this specific project.
-*   **`sdkconfig`**: The project configuration file.
+The application demonstrates how to robustly initialize the flash memory partition, gracefully handle version mismatches or corruption by erasing the flash, and securely read and write Wi-Fi credentials (`wifi_ssid` and `wifi_pass`) across system reboots.
 
-## Build and Flash
-```bash
-idf.py set-target esp32
-idf.py build
-idf.py -p (PORT) flash monitor
-```
+## 📂 Project Architecture
+
+*   **`CMakeLists.txt`**: The project-level CMake file. It sets the project name and includes the ESP-IDF build system.
+*   **`sdkconfig`**: The auto-generated project configuration file (modified via `idf.py menuconfig`). This configuration automatically allocates the default NVS partition table in flash.
+*   **`main/CMakeLists.txt`**: Registers the `main.c` file as a component source.
+*   **`main/main.c`**: The application code containing the `app_main()` entry point and the NVS API logic.
+
+## 🚀 How to Build and Flash
+
+Ensure you have activated your ESP-IDF environment (e.g., by running `. $HOME/esp/esp-idf/export.sh`).
+
+1.  **Navigate to the project directory:**
+    ```bash
+    cd /home/ibrahimshnouda/GitHub/ESP32_ESP-IDF/00_IDF_Full_Project/02_NVS
+    ```
+
+2.  **Set the Target:**
+    Ensure the build system compiles for the correct architecture.
+    ```bash
+    idf.py set-target esp32
+    ```
+
+3.  **Compile the Project:**
+    ```bash
+    idf.py build
+    ```
+
+4.  **Flash and Monitor:**
+    Connect your ESP32. Replace `/dev/ttyUSB0` with your actual serial port (e.g., `COM3` on Windows).
+    ```bash
+    idf.py -p /dev/ttyUSB0 flash monitor
+    ```
+    *Upon opening the monitor, you should see logs from `ESP_LOGI` printing the retrieved SSID and Password.*
+    *To exit the monitor, press `Ctrl + ]`.*
